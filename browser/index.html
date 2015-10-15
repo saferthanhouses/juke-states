@@ -7,6 +7,7 @@
 	<link href="/style.css" rel="stylesheet" />
 	<script src="/lodash/index.js"></script>
 	<script src="/angular/angular.js"></script>
+	<script src="/angular-ui-router/build/angular-ui-router.js"></script>
 	<script src="/js/module.js"></script>
 	<script src="/js/controllers/album.js"></script>
 	<script src="/js/controllers/albums.js"></script>
@@ -18,6 +19,7 @@
 	<script src="/js/factories/album.js"></script>
 	<script src="/js/factories/song.js"></script>
 	<script src="/js/factories/artist.js"></script>
+	<script src="/js/config.js"></script>
 </head>
 <body ng-app="juke">
 	<div id="main" class="container-fluid">
@@ -26,28 +28,21 @@
 			<sidebar ng-controller="MenuCtrl">
 				<section>
 					<h5 class="playlist-item">
-						<a ng-click="viewAlbums()" href="#">ALBUMS</a>
+						<a ui-sref='albums'>ALBUMS</a>
 					</h5>
 				</section>
 				<section>
 					<h5 class="playlist-item">
-						<a ng-click="viewArtists()" href="#">ARTISTS</a>
+						<a ui-sref="artists">ARTISTS</a>
 					</h5>
 				</section>
 			</sidebar>
 		</div>
 
 		<div class="col-xs-10">
+			<ui-view></ui-view>
 
-			<div ng-controller="ArtistsCtrl" ng-show="showMe">
-				<h3>Artists</h3>
-				<div class="list-group">
-					<div class="list-group-item" ng-repeat="artist in artists">
-						<a ng-click="viewArtist(artist._id)" href="#">{{ artist.name }}</a>
-					</div>
-				</div>
-			</div>
-
+<!-- 			
 			<div ng-controller="ArtistCtrl" ng-show="showMe">
 				<h3>{{ artist.name }}</h3>
 				<h4>ALBUMS</h4>
@@ -133,7 +128,7 @@
 						</tr>
 					</tbody>
 				</table>
-			</div>
+			</div> -->
 
 		</div>
 

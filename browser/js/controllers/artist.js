@@ -1,23 +1,13 @@
-app.controller('ArtistCtrl', function ($scope, $rootScope, PlayerFactory, ArtistFactory) {
+app.controller('ArtistCtrl', function ($scope, PlayerFactory, ArtistFactory, $stateParams) {
 	
-	$rootScope.$on('changeView', function (evt, data) {
-		if (data.name == 'oneArtist') {
-			$scope.showMe = true;
-			ArtistFactory.fetchById(data.id)
-			.then(function (artist) {
-				$scope.artist = artist;
-			});
-		} else {
-			$scope.showMe = false;
-		}
-	});
-
-	$scope.viewAlbum = function (albumId) {
-		$rootScope.$broadcast('changeView', {
-			name: 'oneAlbum',
-			id: albumId
-		});
-	};
+	
+	ArtistFactory.fetchById($stateParams.id)
+		.then(function (artist) {
+			$scope.artist = artist;
+		})
+		.catch(function(err) {
+			console.error(err);
+		})
 
 	$scope.isCurrent = function (song) {
 		var current = PlayerFactory.getCurrentSong();
