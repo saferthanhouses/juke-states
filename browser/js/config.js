@@ -49,11 +49,15 @@ app.config(function($stateProvider, $urlRouterProvider) {
 		.state('artist.songs', {
 			url: '/songs',
 			templateUrl: '/views/artistSongs.html',
-			controller: 'ArtistCtrl'
+			controller: function($scope, artist){
+				$scope.artist = artist;
+			}
 		})
 		.state('artist.albums', {
-		url: '/albums',
-		templateUrl: '/views/artistAlbums.html',
-		controller: 'ArtistCtrl'
+			url: '/albums',
+			templateUrl: '/views/artistAlbums.html',
+			controller: function($scope, artist){
+				$scope.artist = artist;
+			}
 		})
 });
