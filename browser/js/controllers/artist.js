@@ -1,13 +1,6 @@
-app.controller('ArtistCtrl', function ($scope, PlayerFactory, ArtistFactory, $stateParams) {
+app.controller('ArtistCtrl', function ($scope, PlayerFactory, $stateParams, artist) {
 	
-	
-	ArtistFactory.fetchById($stateParams.id)
-		.then(function (artist) {
-			$scope.artist = artist;
-		})
-		.catch(function(err) {
-			console.error(err);
-		})
+	$scope.artist = artist;
 
 	$scope.isCurrent = function (song) {
 		var current = PlayerFactory.getCurrentSong();
